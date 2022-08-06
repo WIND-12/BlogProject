@@ -92,7 +92,7 @@ export default {
     transform:translate(-50%);
 }
 
-img {
+.avatat_box img {
     width:100%;
     height:100%;
     border-radius:50%;
