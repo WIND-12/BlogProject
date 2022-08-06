@@ -84,7 +84,7 @@ export default {
       fetchData() {
         //   console.log(this.id);
         console.log("test");
-        console.log(a-b);
+        
         var _this = this;
         this.$http.get("https://blogproject-73495-default-rtdb.firebaseio.com/posts/"+_this.id+".json").then(response => {
               _this.blog = response.data;
@@ -95,6 +95,7 @@ export default {
   
 }
 </script>
+
 <style scoped>
 #add-blog *{
    box-sizing: border-box;

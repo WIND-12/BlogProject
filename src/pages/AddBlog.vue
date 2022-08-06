@@ -1,25 +1,24 @@
 <template>
+
   <div id="add-blog">
-      <h2>添加博客</h2>
+      
       <form v-if="!submmited">
-          <label>博客标题</label>
-          <input type="text" v-model="blog.title" required>
-          <label>博客内容</label>
-          <textarea v-model="blog.content"></textarea>
+      <h2>创建一篇新博客吧！</h2>
+          <label style="color:red;font-weight:bold">博客标题</label>
+          <input type="text" v-model="blog.title" placeholder="取一个简短的标题有利于吸引人气哦！" style="text-align:center">
+          <label style="color:red;font-weight:bold" >博客内容</label>
+          <textarea v-model="blog.content" placeholder="分享你的所见所闻吧！"  maxLength="20000"></textarea>
           <div id="checkboxes">
-              <label>Vue.js</label>
-              <input type="checkbox" value="Vue.js" v-model="blog.catagories">
+              <br>
+              <label style="color:red;font-weight:bold">博客类别：（最多选择两项）</label>
 
-               <label>Node.js</label>
-              <input type="checkbox" value="Node.js" v-model="blog.catagories">
-
-               <label>React.js</label>
-              <input type="checkbox" value="React.js" v-model="blog.catagories"> 
-
-               <label>Angular.js</label>
-              <input type="checkbox" value="Angular.js" v-model="blog.catagories">
+              <el-checkbox-group v-model="blog.checkedCategories" :min="0" :max="2">
+             <el-checkbox v-for="i in categories1" :key="i" :label="i">{{i}}
+             </el-checkbox>
+             </el-checkbox-group>
+           
           </div>
-          <label>作者：</label>
+          <label style="color:red;font-weight:bold">选择昵称：</label>
           <select v-model="blog.authors">
               <option v-for="i in authors">{{i}}</option>
           </select>
@@ -31,17 +30,17 @@
       <h3>您的博客已经发布成功！</h3>
       </div>
 
-      <hr>
+     
       <div id="preview">
-          <h3>博客总览</h3>
+          <h3>博客预览</h3>
           <p>博客标题：{{blog.title}}</p>
           <p>博客内容：</p>
           <p>{{blog.content}}</p>
           <p>博客分类：</p>
           <ul>
-              <li v-for="i in blog.catagories">{{i}}</li>
+              <li v-for="i in blog.checkedCategories">{{i}}</li>
           </ul>
-          <p>作者：{{blog.authors}}</p>
+          <p>作者：{{blog.author}}</p>
 
       </div>
   </div>
@@ -49,38 +48,66 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
+
+
+
 
 
 export default {
   name: 'AddBlog',
   data() {
       return {
+          
           blog: {
               title:"",
               content:"",
-              catagories:[],
+              
               authors:[],
-              index:0,
+              
+              checkedCategories: ref(),
+              author:this.$store.state.author,
+              
           },
           authors:["苹果","橘子","西红柿"],
-          submmited:false
+          submmited:false,
+          isDisabled:false,
+          categories1: ['日常生活', '学习经验', '体育运动', '情感生活'],
+
       }
   },
+
+
+  
   methods: {
       post: async function() {
         //   axios.post("http://jsonplaceholder.typicode.com/posts",{
         //       title:this.blog.title,
         //       body:this.blog.content,
         //       userId:1
-        //       })
-          
+        //       })  
+          if(this.blog.title == "" || this.blog.checkedCategories == null || this.blog.content == "" || this.blog.authors.length == 0) {
+              alert("请输入所有必选项后再提交！")
+          }else {
           const {data:res} = await this.$http.post("https://blogproject-73495-default-rtdb.firebaseio.com/posts.json",this.blog)
                
                console.log(res)
                this.submmited = true;
 
-      }
-  }
+      }}
+  },
+//   watch: {
+//       blog: {
+//           handler(new1,old1) {
+//               if(new1.catagories.length > 1) {
+                  
+//                   this.isDisabled = true;
+//               }
+//           },
+//           deep:true
+//       }
+//   }
   
 }
 </script>
@@ -90,7 +117,7 @@ export default {
 }
 
 #add-blog {
-    margin:20px auto;
+    margin:-50px auto;
     max-width:600px;
     padding:20px;
 }
@@ -122,7 +149,7 @@ textarea {
 
 button {
     display:block;
-    margin:20px 0;
+    margin:20px auto;
     background:crimson;
     color:white;
     border:0;
@@ -132,11 +159,11 @@ button {
     cursor:pointer;
 }
 
-#preview {
+/* #preview {
     padding:10px 20px;
     border:1px dotted #ccc;
     margin:30px 0;
-}
+} */
 
 h3 {
     margin-top:10px;

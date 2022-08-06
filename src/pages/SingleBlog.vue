@@ -1,12 +1,14 @@
 <template lang="">
     <div id="single-blog">
-        <h1>{{blog.title}}</h1>
-        <article>{{blog.content}}</article>
+        <h1>标题：{{blog.title}}</h1>
+        <article>正文：{{blog.content}}</article>
         <ul>
-            <li v-for="category in blog.catagories">
+            <li v-for="category in blog.checkedCategories">
             {{category}}
             </li>
         </ul>
+        <p>昵称:{{blog.authors}}</p>
+        <p>作者:{{blog.author}}</p>
         <button @click="deleteSingleBlog()">删除</button>
         <router-link :to="'/edit/'+id">编辑</router-link>
       
@@ -35,7 +37,7 @@ export default {
       deleteSingleBlog() {
           var _this = this;
           this.$http.delete("https://blogproject-73495-default-rtdb.firebaseio.com/posts/"+_this.id+".json").then(response => {
-              this.$router.push({path:'/'});
+              this.$router.push({path:'/ShowBlog.vue'});
           })}
         
 

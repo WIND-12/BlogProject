@@ -1,6 +1,9 @@
 <template lang="">
-    <div v-theme="'narrow'" id="show-blogs">
-        <h1>博客总览</h1>
+    <!-- <div v-theme="'narrow'" id="show-blogs"> -->
+    <div id="show-blogs">
+     
+        <div class="content">
+        <h1>这里做个滚动热门文章推荐</h1>
         <input type="text" v-model="search" placeholder="搜索">
         <div v-for="i in filteredBlogs" class="single-blog">
         <router-link :to="'/blog/' + i.index">
@@ -10,6 +13,11 @@
             {{i.content}}
         </article>
         </div>
+        </div>
+       
+    <div class="right">
+        <div class="rightTitle">热门标题</div>
+    </div>
        
     </div>
 </template>
@@ -55,16 +63,18 @@ export default {
           })
       }
   }
+  
  
   
 }
 </script>
 <style lang="">
 #show-blogs{
-    max-width:800px;
-    margin:0 auto;
+    width:100%;
+    
     background:skyblue;
 }
+
 
 .single-blog{
     padding:20px;
@@ -86,5 +96,31 @@ input[type="text"]{
     width:100%;
     box-sizing:border-box;
 }
+
+
+
+.right{
     
+    width:20%;
+    height:600px;
+    background:grey;
+    position:fixed;
+    left:80%;
+ 
+    
+}
+
+.rightTitle{
+    background:grey;
+    
+}
+
+.content {
+    float:left;
+    background:skyblue;
+    width: 80%;
+  
+    
+    
+}
 </style>
