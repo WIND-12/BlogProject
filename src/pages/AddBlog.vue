@@ -31,7 +31,7 @@
       </div>
 
      
-      <div id="preview">
+      <!-- <div id="preview">
           <h3>博客预览</h3>
           <p>博客标题：{{blog.title}}</p>
           <p>博客内容：</p>
@@ -42,7 +42,7 @@
           </ul>
           <p>作者：{{blog.author}}</p>
 
-      </div>
+      </div> -->
   </div>
   
 </template>

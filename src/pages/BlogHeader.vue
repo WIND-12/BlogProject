@@ -1,6 +1,6 @@
 <template lang="">
    <nav>
-       <div class="logo">logo</div>
+       <div class="logo">欢迎:{{this.$store.state.author}}</div>
         <button  class="login" @click="out()">登出</button>
         <!-- <button v-else class="login" @click="login()">登录</button>  -->
        <ul>
@@ -67,6 +67,7 @@ nav{
     background:grey;
     padding:15px 0;
     margin-bottom:40px;
+   
 }
 
 .logo {

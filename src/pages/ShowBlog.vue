@@ -3,7 +3,7 @@
     <div id="show-blogs">
      
         <div class="content">
-        <h1>这里做个滚动热门文章推荐</h1>
+
         <input type="text" v-model="search" placeholder="搜索">
         <div v-for="i in filteredBlogs" class="single-blog">
         <router-link :to="'/blog/' + i.index">
@@ -15,9 +15,9 @@
         </div>
         </div>
        
-    <div class="right">
+    <!-- <div class="right">
         <div class="rightTitle">热门标题</div>
-    </div>
+    </div> -->
        
     </div>
 </template>
@@ -70,7 +70,8 @@ export default {
 </script>
 <style lang="">
 #show-blogs{
-    width:100%;
+    width:80%;
+    margin:0 auto;
     
     background:skyblue;
 }
@@ -99,7 +100,7 @@ input[type="text"]{
 
 
 
-.right{
+/* .right{
     
     width:20%;
     height:600px;
@@ -108,7 +109,7 @@ input[type="text"]{
     left:80%;
  
     
-}
+} */
 
 .rightTitle{
     background:grey;
