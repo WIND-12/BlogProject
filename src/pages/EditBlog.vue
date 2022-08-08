@@ -99,7 +99,7 @@ export default {
 
       }
       else {
-          alert("您没有权限删除他人的博客！")
+          alert("您没有权限编辑他人的博客！")
       }
       },
       

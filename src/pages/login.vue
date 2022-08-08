@@ -4,26 +4,17 @@
            <div class="avatat_box">
                <img src="public/logo2.jpg" alt="temp">
            </div>
-           <!-- <form>
-              用户:
-              <input  type="text"  placeholder="请输入用户名" v-model.trim="username">
-               <br></br>
-             
-              密码：
-               <input type="password" v-model.trim="password">
-               <button type="button" @click="onLoginClick">submit</button>
-               <button type="button" @click="onRegisterClick">register</button>
-           </form> -->
+         
         <el-form class="login_form">
             <!-- 用户名 -->
             <el-form-item >
-                <el-input :prefix-icon="Search" placeholder="请输入用户名" v-model.trim="username"></el-input>
+                <el-input  placeholder="请输入用户名" v-model.trim="username"></el-input>
            
              </el-form-item>
 
              <!-- 密码 -->
              <el-form-item >
-             <el-input :suffix-icon="Calendar" placeholder="请输入密码" v-model.trim="password"></el-input>
+             <el-input  placeholder="请输入密码" v-model.trim="password"></el-input>
             </el-form-item>
             
             <!-- 按钮 -->
@@ -57,6 +48,7 @@ export default {
     methods: {
         onLoginClick() {
             var _this = this;
+            //可以把这个操作放到created里，减少读取数据库的次数
             this.$http.get("https://blogproject-73495-default-rtdb.firebaseio.com/authors.json").then(function (data1) {
                 console.log(data1.data)
                 for (let key in data1.data) {
@@ -67,11 +59,6 @@ export default {
                 //检查数组中是否存在所对应的账号信息
                 let temp = _this.registeredAuthors.some(checked);
                 function checked(author) {
-                    // if(_this.username === author.username && _this.password === author.password) {
-                    //     return true;
-                    // }else {
-                    //     return false;
-                    // }
                     return (_this.username === author.username && _this.password === author.password)
 
                 }
@@ -93,14 +80,7 @@ export default {
 
 
             })
-            // if(this.username === "admin" && this.password === '123456') {
-            //     this.$router.push("/ShowBlog.vue")
-            //     localStorage.setItem('token1','Bearer xxx')
-
-            // }else {
-            //     alert("请输入正确的账户名和密码")
-
-            // }
+           
         },
         onRegisterClick() {
             this.$router.push("/Register.vue")

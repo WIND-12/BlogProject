@@ -1,6 +1,6 @@
 <template lang="">
     <!-- <div v-theme="'narrow'" id="show-blogs"> -->
-    <div id="show-blogs">
+    <div id="show-blogs1">
      
         <div class="content">
 
@@ -15,9 +15,7 @@
         </div>
         </div>
        
-    <!-- <div class="right">
-        <div class="rightTitle">热门标题</div>
-    </div> -->
+    
        
     </div>
 </template>
@@ -68,11 +66,11 @@ export default {
   
 }
 </script>
-<style lang="">
-#show-blogs{
-    width:80%;
+<style lang="" scoped>
+#show-blogs1{
+    width:60%;
     margin:0 auto;
-    
+    overflow:hidden;
     background:skyblue;
 }
 
@@ -100,6 +98,8 @@ input[type="text"]{
 
 
 
+
+
 /* .right{
     
     width:20%;
@@ -119,9 +119,13 @@ input[type="text"]{
 .content {
     float:left;
     background:skyblue;
-    width: 80%;
+    width: 100%;
   
     
     
+}
+
+a {
+    text-decoration:none;
 }
 </style>
